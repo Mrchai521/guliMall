@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description 优惠券启动类
  * @createTime 2021/01/29 11:14:00
  */
-@MapperScan("com.cxf.gulimall.coupon")
+
 @SpringBootApplication
 public class CouponApplication {
     public static void main(String[] args) {

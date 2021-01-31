@@ -1,5 +1,6 @@
 package com.cxf.gulimall.coupon.service.impl;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -13,7 +14,8 @@ import com.cxf.gulimall.coupon.entity.CouponHistoryEntity;
 import com.cxf.gulimall.coupon.service.CouponHistoryService;
 
 
-@Service("couponHistoryService")
+@Service
+@Primary
 public class CouponHistoryServiceImpl extends ServiceImpl<CouponHistoryDao, CouponHistoryEntity> implements CouponHistoryService {
 
     @Override
