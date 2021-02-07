@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description 订单启动类
  * @createTime 2021/01/29 11:18:00
  */
-@MapperScan("com.cxf.gulimall.order")
+//@MapperScan("com.cxf.gulimall.order")
 @SpringBootApplication
 public class OrderApplication {
     public static void main(String[] args) {
