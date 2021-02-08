@@ -7,6 +7,7 @@ import java.util.Map;
 import com.cxf.gulimall.member.feign.CouponFeignService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,8 @@ public class UmsMemberController {
     @Autowired
     private CouponFeignService couponFeignService;
 
-    @RequestMapping("/test")
+
+    @RequestMapping("/testFeign")
     public R test() {
         UmsMemberEntity umsMemberEntity = new UmsMemberEntity();
         umsMemberEntity.setBirth(new Date());

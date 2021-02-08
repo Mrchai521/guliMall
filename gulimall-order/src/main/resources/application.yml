@@ -3,7 +3,7 @@ spring:
     name: gulimall-order
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql:121.36.25.190:3306/gulimall_oms
+    url: jdbc:mysql://121.36.25.190:3306/gulimall_oms
     username: root
     password: Cxf15364946594
   servlet:
