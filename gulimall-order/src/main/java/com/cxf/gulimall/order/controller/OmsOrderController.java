@@ -83,8 +83,15 @@ public class OmsOrderController {
                 System.out.println("name1为：" + name1);
                 System.out.println("spilt[0]为：" + split[0]);
                 System.out.println("spilt[1]为" + split[1]);
-
-
+            }
+            if (fileName.endsWith("pdf")) {
+                File readfile = new File(fileName);
+                String filetrueName = fileName.substring(fileName.lastIndexOf("\\") + 1);
+                String name1 = filetrueName.substring(0, filetrueName.lastIndexOf("."));
+                String[] split = name1.split("_");
+                System.out.println("pdfname1为：" + name1);
+                System.out.println("pdfspilt[0]为：" + split[0]);
+                System.out.println("pdfspilt[1]为" + split[1]);
             }
         }
         System.out.println(list);
