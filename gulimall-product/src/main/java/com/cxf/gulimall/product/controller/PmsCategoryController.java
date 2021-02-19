@@ -1,6 +1,7 @@
 package com.cxf.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -30,7 +31,11 @@ import com.cxf.gulimall.common.utils.R;
 public class PmsCategoryController {
     @Autowired
     private PmsCategoryService pmsCategoryService;
-
+    @RequestMapping("/list/tree")
+    public R list(){
+        List<PmsCategoryEntity> list = pmsCategoryService.listWithTree();
+        return R.ok().put("data",list);
+    }
     /**
      * 列表
      */
