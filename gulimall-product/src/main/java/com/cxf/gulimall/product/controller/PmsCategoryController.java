@@ -18,7 +18,6 @@ import com.cxf.gulimall.common.utils.PageUtils;
 import com.cxf.gulimall.common.utils.R;
 
 
-
 /**
  * 商品三级分类
  *
@@ -31,17 +30,19 @@ import com.cxf.gulimall.common.utils.R;
 public class PmsCategoryController {
     @Autowired
     private PmsCategoryService pmsCategoryService;
+
     @RequestMapping("/list/tree")
-    public R list(){
+    public R list() {
         List<PmsCategoryEntity> list = pmsCategoryService.listWithTree();
-        return R.ok().put("data",list);
+        return R.ok().put("data", list);
     }
+
     /**
      * 列表
      */
     @RequestMapping("/list")
     @RequiresPermissions("product:pmscategory:list")
-    public R list(@RequestParam Map<String, Object> params){
+    public R list(@RequestParam Map<String, Object> params) {
         PageUtils page = pmsCategoryService.queryPage(params);
 
         return R.ok().put("page", page);
@@ -53,8 +54,8 @@ public class PmsCategoryController {
      */
     @RequestMapping("/info/{catId}")
     @RequiresPermissions("product:pmscategory:info")
-    public R info(@PathVariable("catId") Long catId){
-		PmsCategoryEntity pmsCategory = pmsCategoryService.getById(catId);
+    public R info(@PathVariable("catId") Long catId) {
+        PmsCategoryEntity pmsCategory = pmsCategoryService.getById(catId);
 
         return R.ok().put("pmsCategory", pmsCategory);
     }
@@ -64,8 +65,8 @@ public class PmsCategoryController {
      */
     @RequestMapping("/save")
     @RequiresPermissions("product:pmscategory:save")
-    public R save(@RequestBody PmsCategoryEntity pmsCategory){
-		pmsCategoryService.save(pmsCategory);
+    public R save(@RequestBody PmsCategoryEntity pmsCategory) {
+        pmsCategoryService.save(pmsCategory);
 
         return R.ok();
     }
@@ -75,8 +76,8 @@ public class PmsCategoryController {
      */
     @RequestMapping("/update")
     @RequiresPermissions("product:pmscategory:update")
-    public R update(@RequestBody PmsCategoryEntity pmsCategory){
-		pmsCategoryService.updateById(pmsCategory);
+    public R update(@RequestBody PmsCategoryEntity pmsCategory) {
+        pmsCategoryService.updateById(pmsCategory);
 
         return R.ok();
     }
@@ -86,9 +87,8 @@ public class PmsCategoryController {
      */
     @RequestMapping("/delete")
     @RequiresPermissions("product:pmscategory:delete")
-    public R delete(@RequestBody Long[] catIds){
-		pmsCategoryService.removeByIds(Arrays.asList(catIds));
-
+    public R delete(@RequestBody Long[] catIds) {
+        pmsCategoryService.removeByIds(Arrays.asList(catIds));
         return R.ok();
     }
 
