@@ -92,4 +92,15 @@ public class PmsCategoryController {
         return R.ok();
     }
 
+    /**
+     * 批量修改排序
+     *
+     * @param pmsCategoryArr
+     * @return
+     */
+    @RequestMapping("/update/sort")
+    public R updateSort(@RequestBody PmsCategoryEntity[] pmsCategoryArr) {
+        pmsCategoryService.updateBatchById(Arrays.asList(pmsCategoryArr));
+        return R.ok();
+    }
 }
