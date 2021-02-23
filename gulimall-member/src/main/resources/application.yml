@@ -17,3 +17,8 @@ mybatis-plus:
       id-type: auto
 server:
   port: 5001
+hikari:
+  minimum-idle: 3
+  maximum-pool-size: 10
+  max-lifetime: 30000   #不能小于30秒，否则默认回到1800秒
+  connection-test-query: SELECT 1
