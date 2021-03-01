@@ -10,7 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Description 第三方服务启动类
  * @createTime 2021/03/01 16:39:00
  */
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 @SpringBootApplication
 public class ThirdApplication {
     public static void main(String[] args) {

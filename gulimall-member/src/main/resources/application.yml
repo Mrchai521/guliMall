@@ -16,7 +16,7 @@ mybatis-plus:
     db-config:
       id-type: auto
 server:
-  port: 5001
+  port: 6500
 hikari:
   minimum-idle: 3
   maximum-pool-size: 10
