@@ -17,6 +17,12 @@
         <poi.version>4.0.0</poi.version>
     </properties>
     <dependencies>
+        <!--alicloud-oss 依赖-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alicloud-oss</artifactId>
+        </dependency>
+
         <!-- mybatis-plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
