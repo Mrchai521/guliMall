@@ -18,11 +18,17 @@
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
     </properties>
     <dependencies>
-       <!-- <dependency>
+        <dependency>
             <groupId>com.cxf.gulimall</groupId>
             <artifactId>gulimall-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>-->
+            <exclusions>
+                <exclusion>
+                    <groupId>com.alibaba.cloud</groupId>
+                    <artifactId>spring-cloud-starter-alicloud-oss</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
