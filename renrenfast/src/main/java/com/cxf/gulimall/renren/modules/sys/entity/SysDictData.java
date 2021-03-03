@@ -17,13 +17,9 @@ import java.util.Date;
 public class SysDictData implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
-     * id
-     */
-    @TableId
-    private Long id;
-    /**
      * 字典编码
      */
+    @TableId
     private Long dictCode;
 
     /**
@@ -66,10 +62,6 @@ public class SysDictData implements Serializable {
      */
     private String status;
 
-    /**
-     * 创建者ID
-     */
-    private Long createUserId;
 
     /**
      * 创建时间
@@ -84,4 +76,12 @@ public class SysDictData implements Serializable {
      * 备注
      */
     private String remark;
+    /**
+     * 创建人
+     */
+    private String createBy;
+    /**
+     * 创建人
+     */
+    private String updateBy;
 }

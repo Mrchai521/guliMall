@@ -30,8 +30,9 @@ public class SysDictTypeController extends AbstractController {
 
     /**
      * 查询字典类型列表
+     * @RequiresPermissions("system:type:list")
      */
-    @RequiresPermissions("system:type:list")
+
     @GetMapping("/list")
     public R list(SysDictType sysDictType) {
         List<SysDictType> list = sysDictTypeService.selectSysDictTypeList(sysDictType);

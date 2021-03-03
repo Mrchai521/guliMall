@@ -18,11 +18,11 @@ import java.util.Date;
 public class SysDictType implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @TableId
-    private Long id;
+
     /**
      * 字典主键
      */
+    @TableId
     private Long dictId;
 
     /**
@@ -43,7 +43,14 @@ public class SysDictType implements Serializable {
      * 创建时间
      */
     private Date createTime;
-
+    /**
+     * 创建人
+     */
+    private String createBy;
+    /**
+     * 创建人
+     */
+    private String updateBy;
     /**
      * 修改时间
      */
