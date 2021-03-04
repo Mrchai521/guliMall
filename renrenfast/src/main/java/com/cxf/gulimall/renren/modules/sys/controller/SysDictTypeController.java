@@ -54,7 +54,6 @@ public class SysDictTypeController extends AbstractController {
     /**
      * 获取字典类型详细信息
      */
-    @RequiresPermissions("system:type:query")
     @GetMapping(value = "/{dictId}")
     public R getInfo(@PathVariable("dictId") Long dictId) {
         return R.ok().put("info", sysDictTypeService.selectSysDictTypeById(dictId));

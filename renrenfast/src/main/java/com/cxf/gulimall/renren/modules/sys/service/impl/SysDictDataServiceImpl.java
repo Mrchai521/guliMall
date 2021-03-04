@@ -1,5 +1,7 @@
 package com.cxf.gulimall.renren.modules.sys.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.cxf.gulimall.renren.common.utils.DateUtils;
 import com.cxf.gulimall.renren.modules.sys.dao.SysDictDataMapper;
 import com.cxf.gulimall.renren.modules.sys.entity.SysDictData;
@@ -87,5 +89,12 @@ public class SysDictDataServiceImpl implements ISysDictDataService {
     @Override
     public int deleteSysDictDataById(Long dictCode) {
         return sysDictDataMapper.deleteSysDictDataById(dictCode);
+    }
+
+    @Override
+    public List<SysDictData> selectSysDictDataByDictType(String dictType) {
+        QueryWrapper<SysDictData> wrapper = new QueryWrapper<>();
+        wrapper.eq("dict_type",dictType);
+        return sysDictDataMapper.selectList(wrapper);
     }
 }

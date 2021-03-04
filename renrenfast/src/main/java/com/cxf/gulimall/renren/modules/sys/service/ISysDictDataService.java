@@ -59,4 +59,6 @@ public interface ISysDictDataService
      * @return 结果
      */
     public int deleteSysDictDataById(Long dictCode);
+
+    List<SysDictData> selectSysDictDataByDictType(String dictType);
 }

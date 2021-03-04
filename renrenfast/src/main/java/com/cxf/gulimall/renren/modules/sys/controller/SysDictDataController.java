@@ -5,6 +5,7 @@ import java.util.List;
 import com.cxf.gulimall.renren.common.utils.R;
 import com.cxf.gulimall.renren.modules.sys.entity.SysDictData;
 import com.cxf.gulimall.renren.modules.sys.service.ISysDictDataService;
+import com.cxf.gulimall.renren.modules.sys.service.ISysDictTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +28,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysDictDataController extends AbstractController {
     @Autowired
     private ISysDictDataService sysDictDataService;
-
+    @Autowired
+    private ISysDictTypeService sysDictTypeService;
     /**
      * 查询字典数据列表
      */
-    @RequiresPermissions("system:data:list")
+    //@RequiresPermissions("system:data:list")
     @GetMapping("/list")
     public R list(SysDictData sysDictData) {
         List<SysDictData> list = sysDictDataService.selectSysDictDataList(sysDictData);
@@ -39,21 +41,26 @@ public class SysDictDataController extends AbstractController {
     }
 
     /**
-     * 导出字典数据列表
+     * 通过dictType查询列表
      */
-    @GetMapping("/export")
-    public R export(SysDictData sysDictData) {
-        List<SysDictData> list = sysDictDataService.selectSysDictDataList(sysDictData);
-//        ExcelUtil<SysDictData> util = new ExcelUtil<SysDictData>(SysDictData.class);
-//        return util.exportExcel(list, "data");
-        return R.ok();
+    @GetMapping("/getListByDictType/{dictType}")
+    public R getListByDicType(@PathVariable("dictType")String dictType) {
+        List<SysDictData> list = sysDictDataService.selectSysDictDataByDictType(dictType);
+        return R.ok().put("page",list);
     }
-
+    /**
+     * 通过字典类型id dictId获取字典数据详细信息
+     */
+    //@RequiresPermissions("system:data:query")
+    @GetMapping(value = "/{dictId}")
+    public R getDictType(@PathVariable("dictId") Long dictId) {
+        return R.ok().put("info", sysDictTypeService.selectSysDictTypeById(dictId));
+    }
     /**
      * 获取字典数据详细信息
      */
     @RequiresPermissions("system:data:query")
-    @GetMapping(value = "/{dictCode}")
+    @GetMapping(value = "type/{dictCode}")
     public R getInfo(@PathVariable("dictCode") Long dictCode) {
         return R.ok().put("info", sysDictDataService.selectSysDictDataById(dictCode));
     }
