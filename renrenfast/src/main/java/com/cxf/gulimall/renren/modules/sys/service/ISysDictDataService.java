@@ -1,8 +1,10 @@
 package com.cxf.gulimall.renren.modules.sys.service;
 
+import com.cxf.gulimall.renren.common.utils.PageUtils;
 import com.cxf.gulimall.renren.modules.sys.entity.SysDictData;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 字典数据Service接口
@@ -61,4 +63,11 @@ public interface ISysDictDataService
     public int deleteSysDictDataById(Long dictCode);
 
     List<SysDictData> selectSysDictDataByDictType(String dictType);
+
+    /**
+     * 查询字典数据带分页
+     * @param params
+     * @return
+     */
+    PageUtils queryPage(Map<String, Object> params);
 }

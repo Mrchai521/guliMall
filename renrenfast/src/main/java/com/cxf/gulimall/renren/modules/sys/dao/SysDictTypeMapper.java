@@ -1,6 +1,8 @@
 package com.cxf.gulimall.renren.modules.sys.dao;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cxf.gulimall.renren.modules.sys.entity.SysDictType;
+import com.cxf.gulimall.renren.modules.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
  * @date 2021-03-03
  */
 @Mapper
-public interface SysDictTypeMapper {
+public interface SysDictTypeMapper extends BaseMapper<SysDictType> {
     /**
      * 查询字典类型
      *

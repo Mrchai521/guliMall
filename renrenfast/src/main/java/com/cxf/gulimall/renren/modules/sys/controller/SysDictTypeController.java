@@ -1,20 +1,15 @@
 package com.cxf.gulimall.renren.modules.sys.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import com.cxf.gulimall.renren.common.utils.PageUtils;
 import com.cxf.gulimall.renren.common.utils.R;
 import com.cxf.gulimall.renren.modules.sys.entity.SysDictType;
 import com.cxf.gulimall.renren.modules.sys.service.ISysDictTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 字典类型Controller
@@ -27,12 +22,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysDictTypeController extends AbstractController {
     @Autowired
     private ISysDictTypeService sysDictTypeService;
+    /**
+     * 查询字典类型列表（带分页）
+     * @RequiresPermissions("system:type:list")
+     */
+    @GetMapping("/listByPage")
+    public R listByPage(@RequestParam Map<String, Object> params) {
+        PageUtils page = sysDictTypeService.queryPage(params);
+        return R.ok().put("page", page);
+    }
 
     /**
      * 查询字典类型列表
      * @RequiresPermissions("system:type:list")
      */
-
     @GetMapping("/list")
     public R list(SysDictType sysDictType) {
         List<SysDictType> list = sysDictTypeService.selectSysDictTypeList(sysDictType);

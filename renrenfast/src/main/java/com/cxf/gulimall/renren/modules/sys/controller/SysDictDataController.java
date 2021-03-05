@@ -1,21 +1,17 @@
 package com.cxf.gulimall.renren.modules.sys.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import com.cxf.gulimall.renren.common.utils.PageUtils;
 import com.cxf.gulimall.renren.common.utils.R;
 import com.cxf.gulimall.renren.modules.sys.entity.SysDictData;
+import com.cxf.gulimall.renren.modules.sys.entity.SysDictType;
 import com.cxf.gulimall.renren.modules.sys.service.ISysDictDataService;
 import com.cxf.gulimall.renren.modules.sys.service.ISysDictTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 字典数据Controller
@@ -30,6 +26,16 @@ public class SysDictDataController extends AbstractController {
     private ISysDictDataService sysDictDataService;
     @Autowired
     private ISysDictTypeService sysDictTypeService;
+
+    /**
+     * 查询字典数据列表（带分页）
+     * @RequiresPermissions("system:type:list")
+     */
+    @GetMapping("/listByPage")
+    public R listByPage(@RequestParam Map<String, Object> params) {
+        PageUtils page = sysDictDataService.queryPage(params);
+        return R.ok().put("page", page);
+    }
     /**
      * 查询字典数据列表
      */
@@ -50,16 +56,18 @@ public class SysDictDataController extends AbstractController {
     }
     /**
      * 通过字典类型id dictId获取字典数据详细信息
+     * @RequiresPermissions("system:data:query")
      */
-    //@RequiresPermissions("system:data:query")
     @GetMapping(value = "/{dictId}")
     public R getDictType(@PathVariable("dictId") Long dictId) {
-        return R.ok().put("info", sysDictTypeService.selectSysDictTypeById(dictId));
+        SysDictType sysDictType = sysDictTypeService.selectSysDictTypeById(dictId);
+        return R.ok().put("info",sysDictType);
     }
     /**
      * 获取字典数据详细信息
+     * @RequiresPermissions("system:data:query")
      */
-    @RequiresPermissions("system:data:query")
+
     @GetMapping(value = "type/{dictCode}")
     public R getInfo(@PathVariable("dictCode") Long dictCode) {
         return R.ok().put("info", sysDictDataService.selectSysDictDataById(dictCode));
@@ -67,8 +75,9 @@ public class SysDictDataController extends AbstractController {
 
     /**
      * 新增字典数据
+     *  @RequiresPermissions("system:data:add")
      */
-    @RequiresPermissions("system:data:add")
+
     @PostMapping
     public R add(@RequestBody SysDictData sysDictData) {
         sysDictDataService.insertSysDictData(sysDictData);
@@ -77,8 +86,9 @@ public class SysDictDataController extends AbstractController {
 
     /**
      * 修改字典数据
+     * @RequiresPermissions("system:data:edit")
      */
-    @RequiresPermissions("system:data:edit")
+
     @PutMapping
     public R edit(@RequestBody SysDictData sysDictData) {
         sysDictDataService.updateSysDictData(sysDictData);
@@ -87,8 +97,9 @@ public class SysDictDataController extends AbstractController {
 
     /**
      * 删除字典数据
+     * @RequiresPermissions("system:data:remove")
      */
-    @RequiresPermissions("system:data:remove")
+
     @DeleteMapping("/{dictCodes}")
     public R remove(@PathVariable Long[] dictCodes) {
         sysDictDataService.deleteSysDictDataByIds(dictCodes);
