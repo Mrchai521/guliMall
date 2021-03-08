@@ -8,15 +8,14 @@ import java.util.Map;
 
 /**
  * 字典数据Service接口
- * 
+ *
  * @author ruoyi
  * @date 2021-03-03
  */
-public interface ISysDictDataService 
-{
+public interface ISysDictDataService {
     /**
      * 查询字典数据
-     * 
+     *
      * @param dictCode 字典数据ID
      * @return 字典数据
      */
@@ -24,7 +23,7 @@ public interface ISysDictDataService
 
     /**
      * 查询字典数据列表
-     * 
+     *
      * @param sysDictData 字典数据
      * @return 字典数据集合
      */
@@ -32,7 +31,7 @@ public interface ISysDictDataService
 
     /**
      * 新增字典数据
-     * 
+     *
      * @param sysDictData 字典数据
      * @return 结果
      */
@@ -40,7 +39,7 @@ public interface ISysDictDataService
 
     /**
      * 修改字典数据
-     * 
+     *
      * @param sysDictData 字典数据
      * @return 结果
      */
@@ -48,7 +47,7 @@ public interface ISysDictDataService
 
     /**
      * 批量删除字典数据
-     * 
+     *
      * @param dictCodes 需要删除的字典数据ID
      * @return 结果
      */
@@ -56,7 +55,7 @@ public interface ISysDictDataService
 
     /**
      * 删除字典数据信息
-     * 
+     *
      * @param dictCode 字典数据ID
      * @return 结果
      */
@@ -66,6 +65,7 @@ public interface ISysDictDataService
 
     /**
      * 查询字典数据带分页
+     *
      * @param params
      * @return
      */
