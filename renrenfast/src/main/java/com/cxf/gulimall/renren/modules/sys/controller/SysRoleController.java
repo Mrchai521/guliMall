@@ -95,6 +95,7 @@ public class SysRoleController extends AbstractController {
 		ValidatorUtils.validateEntity(role);
 		
 		role.setCreateUserId(getUserId());
+		role.setCreateBy(getUser().getUsername());
 		sysRoleService.saveRole(role);
 		
 		return R.ok();
