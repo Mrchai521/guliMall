@@ -11,7 +11,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Description 商品管理启动类
  * @createTime 2021/01/29 10:19:00
  */
-@MapperScan("com.cxf.gulimall.product.dao")
+//@MapperScan("com.cxf.gulimall.product.dao")
 @SpringBootApplication
 @EnableDiscoveryClient
 public class GulimallProductApplication {

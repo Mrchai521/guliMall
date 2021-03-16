@@ -1,5 +1,6 @@
 package com.cxf.gulimall.renren.modules.sys.service.impl;
 
+import com.cxf.gulimall.renren.common.exception.RRException;
 import com.cxf.gulimall.renren.common.utils.TreeSelect;
 import com.cxf.gulimall.renren.modules.sys.dao.SysDeptMapper;
 import com.cxf.gulimall.renren.modules.sys.entity.SysDept;
@@ -155,7 +156,7 @@ public class SysDeptServiceImpl implements SysDeptService {
         SysDept info = sysDeptMapper.selectSysDeptById(dept.getParentId());
         // 如果父节点不为正常状态,则不允许新增子节点
         if (!"0".equals(info.getStatus())) {
-            throw new Exception("部门停用，不允许新增");
+            throw new RRException("部门停用，不允许新增");
         }
         dept.setCreateTime(new Date());
         dept.setAncestors(info.getAncestors() + "," + dept.getParentId());

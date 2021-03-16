@@ -44,6 +44,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
 	private SysUserService sysUserService;
     @Autowired
     private SysUserRoleService sysUserRoleService;
+    @Autowired
+	private SysRoleDao sysRoleDao;
 
 	@Override
 	public PageUtils queryPage(Map<String, Object> params) {
@@ -64,7 +66,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
     @Transactional(rollbackFor = Exception.class)
     public void saveRole(SysRoleEntity role) {
         role.setCreateTime(new Date());
-        this.save(role);
+        // this.save(role);
+		sysRoleDao.insertRole(role);
 
         //检查权限是否越权
         checkPrems(role);
