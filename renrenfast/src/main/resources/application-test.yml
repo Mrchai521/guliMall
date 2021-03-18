@@ -1,49 +1,83 @@
+server:
+  port: 9711
 spring:
-    datasource:
-        type: com.alibaba.druid.pool.DruidDataSource
-        druid:
-            driver-class-name: com.mysql.cj.jdbc.Driver
-            url: jdbc:mysql://localhost:3306/renren_fast?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-            username: renren
-            password: 123456
-            initial-size: 10
-            max-active: 100
-            min-idle: 10
-            max-wait: 60000
-            pool-prepared-statements: true
-            max-pool-prepared-statement-per-connection-size: 20
-            time-between-eviction-runs-millis: 60000
-            min-evictable-idle-time-millis: 300000
-            #Oracle需要打开注释
-            #validation-query: SELECT 1 FROM DUAL
-            test-while-idle: true
-            test-on-borrow: false
-            test-on-return: false
-            stat-view-servlet:
-                enabled: true
-                url-pattern: /druid/*
-                #login-username: admin
-                #login-password: admin
-            filter:
-                stat:
-                    log-slow-sql: true
-                    slow-sql-millis: 1000
-                    merge-sql: false
-                wall:
-                    config:
-                        multi-statement-allow: true
+  main:
+    allow-bean-definition-overriding: true #当遇到同样名字的时候，是否允许覆盖注册
+  #配置rabbitMq 服务器
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: pdm
+    password: Yonde@123
+  application:
+    name: doc-convert-worker-local
+  datasource:
+    url: jdbc:oracle:thin:@127.0.0.1:1521:PDM
+    username: scott
+    password: Yonde123
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    hikari:
+      minimum-idle: 2
+      idle-timeout: 180000
+      maximum-pool-size: 10
+      auto-commit: true
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: select 1
+      pool-name: hikariDexDbPool
+
+model:
+  api:
+    url: 192.168.1.124:9003
+eureka:
+  client:
+    service-url:
+      defaultZone: http://yonde:yonde@192.168.1.124:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: 192.168.1.45
+    instance-id: ${spring.application.name}:${eureka.instance.ip-address}:${server.port}
+es:
+  search:
+    service:
+      url: http://192.168.1.124:9306
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+perm:
+  enabled: true
+  appName: SystemTestModels
 
 
-##多数据源的配置
-#dynamic:
-#  datasource:
-#    slave1:
-#      driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-#      url: jdbc:sqlserver://localhost:1433;DatabaseName=renren_security
-#      username: sa
-#      password: 123456
-#    slave2:
-#      driver-class-name: org.postgresql.Driver
-#      url: jdbc:postgresql://localhost:5432/renren_security
-#      username: renren
-#      password: 123456
+http:
+  basePath: /
+  url: http://192.168.1.144:9001
+
+#feign调用 跳过用户权限拦截
+user:
+  enable: false
+  userAccount: feign
+  password: 999999
+
+dex:
+  feign:
+    DEX-MSG: DEX-MSG
+    DEX-DICT: DEX-DICT
+    DEX-ESEARCH: DEX-ESEARCH
+    DEX-WFC: DEX-WFC
+    DEX-USER: DEX-USER
+    DEX-BMODEL: DEX-BMODEL
+    DEX-LCYCLE: DEX-LCYCLE
+    DEX-CONTEXT: DEX-CONTEXT
+    DEX-VALUT: DEX-VALUT
+    DEX-AUTH: DEX-AUTH
+    DEX-SANDBOX: DEX-SANDBOX
+
+esign:
+  targetDir: worker\esign\target
+
+logging:
+  config: classpath:log/logback-spring.xml
