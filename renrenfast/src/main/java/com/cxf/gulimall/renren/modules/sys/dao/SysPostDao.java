@@ -12,4 +12,10 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SysPostDao extends BaseMapper<SysPost> {
+    /**
+     *通过岗位ID查询岗位使用数量
+     * @param postId
+     * @return
+     */
+    int countUserPostById(Long postId);
 }
